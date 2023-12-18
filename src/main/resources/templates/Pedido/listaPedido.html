@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Compra</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Custom styles for this template -->
+        <link href="../sidebars.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link href="../menu.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="../sidebars.js"></script>
+        <script src="../assets/js/color-modes.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            h2{
+                text-align: center;
+                margin-top: 15px;
+                margin-bottom: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:replace="tema_icono :: svg"></div>    
+
+        <div th:replace="tema :: div"></div>
+
+        <div th:replace="iconos :: svg"></div>
+
+        <main class="d-flex flex-nowrap" style="max-height:150vh !important;">
+            <h1 class="visually-hidden">Sidebars examples</h1>
+
+            <div th:replace="menu :: div"></div>
+            <div class="b-example-divider b-example-vr"></div>
+
+            <div class="container">
+                <hr>
+                <h2>Lista de pedidos</h2>
+                <hr>          
+
+
+                <form action="/pedido/BuscarPedido", method="post">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name ="desc" placeholder="Ingrese código">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    </div>
+                </form>
+                <br>
+
+                <div class="d-grid gap-4 d-md-block">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ordenar por estado
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/pedido/pedidosActivos}">Activos</a></li>
+                            <li><a class="dropdown-item" th:href="@{/pedido/pedidosAnulados}">Anulados</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ordenar por fecha
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/pedido/fechaASC}">Ascendente</a></li>
+                            <li><a class="dropdown-item" th:href="@{/pedido/fechaDESC}">Descendente</a></li>
+                        </ul>
+                    </div>
+                    
+                    <a class="btn btn-success" th:href="@{/pedido/misResportes}" type="button">Exportar a Excel</a>
+                    <a class="btn btn-danger" th:href="@{/pedido/misReportes-pdf}" type="button">Exportar a PDF</a>
+                </div>
+                <br>
+
+                <table class="table">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">Código pedido</th>
+                            <th scope="col">Fecha de registro</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Proveedor</th>
+                            <th scope="col">Modo de pago</th>
+                            <th scope="col">Comprobante</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Anular</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="pedido : ${pedidos}">
+                            <td th:text="${pedido.idPedido}"></td>
+                            <td th:text="${pedido.fecha}"></td>
+                            <td th:text="${pedido.usuario.nombre}"></td>
+                            <td th:text="${pedido.proveedor.nombre}"></td>
+                            <td th:text="${pedido.metodopago}"></td>
+                            <td th:text="${pedido.tipocomprobante}"></td>
+                            <td th:text="${pedido.estado ? 'Activo' : 'Anulado'}"></td>
+                            <td>
+                                <a th:href="@{/pedido/anularPedido (cod=${pedido.idPedido})}" target="self" style="color:red">
+                                    <i class="bi bi-x-circle-fill"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="@{/pedido/eliminarPedido (cod=${pedido.idPedido})}" target="self" style="color:red">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </td>
+                        </tr>  
+                    </tbody>
+                </table>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a th:href="@{/pedido/nuevoPedido}" class="btn btn-primary">Agregar</a>
+                </div>
+                <br>
+            </div>
+        </main>
+    </body>
+</html>

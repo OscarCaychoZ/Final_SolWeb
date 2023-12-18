@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Custom styles for this template -->
+        <link href="../sidebars.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link href="../menu.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="../sidebars.js"></script>
+        <script src="../assets/js/color-modes.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <style>
+
+
+            .item
+            {
+                display: flex;
+                margin-left: 20px;
+            }
+            .card{
+                margin-top: 80px;
+                margin-right:15px;
+            }
+            .ctables{
+                margin-left: 20px;
+            }
+            .col-md-4{
+                padding: 28px;
+            }
+            .one{
+                background-color: blue;
+            }
+            .two{
+                background-color: red;
+            }
+            .three{
+                background-color: orange;
+            }
+            .four{
+                background-color: blueviolet;
+            }
+
+            .sections-container{
+                margin-bottom: 20px;
+            }
+
+            .card .card-header{
+                text-align: center;
+            }
+            .material-symbols-outlined {
+                font-size: 50px;
+                color:white;
+                padding-right:50px;
+                margin-left: -14.5px;
+                font-variation-settings:
+                    'FILL' 1,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24
+            }
+        </style>
+    </head>
+    <body>
+
+        <div th:replace="tema_icono :: svg"></div>    
+
+        <div th:replace="tema :: div"></div>
+
+        <div th:replace="iconos :: svg"></div>
+
+        <main class="d-flex flex-nowrap" style="max-height:150vh !important;">
+            <h1 class="visually-hidden">Sidebars examples</h1>
+            <div th:replace="menu :: div"></div>
+            <div class="b-example-divider b-example-vr"></div>
+            <div class="sections-container">
+                <section class="item">
+                    <div class="card mb-3" style="min-width: 230px; max-height: 7.1em;">
+                        <div class="row g-0">
+                            <!-- Parte Izquierda con Ícono y Color de Fondo -->
+                            <div class="col-md-4 one">
+                                <span class="material-symbols-outlined">
+                                    apparel
+                                </span>
+                            </div>
+
+                            <!-- Parte Derecha con Descripción -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 2em; text-align: center" th:text="${TotalProduct}">33</h5>
+                                    <p class="card-text" style="text-align: center">Productos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3" style="min-width: 230px; max-height: 7.1em;">
+                        <div class="row g-0">
+                            <!-- Parte Izquierda con Ícono y Color de Fondo -->
+                            <div class="col-md-4 two">
+                                <span class="material-symbols-outlined">
+                                    assignment_ind
+                                </span>
+                            </div>
+
+                            <!-- Parte Derecha con Descripción -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 2em; text-align: center" th:text="${TotalPro}"></h5>
+                                    <p class="card-text" style="text-align: center">Proveedores</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card mb-3" style="min-width: 230px; max-height: 7.1em;">
+                        <div class="row g-0">
+                            <!-- Parte Izquierda con Ícono y Color de Fondo -->
+                            <div class="col-md-4 three">
+                                <span class="material-symbols-outlined">
+                                    category
+                                </span>
+                            </div>
+
+                            <!-- Parte Derecha con Descripción -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 2em; text-align: center" th:text="${TotalCat}">33</h5>
+                                    <p class="card-text" style="text-align: center">Categorias</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card mb-3" style="min-width: 230px; max-height: 7.1em;">
+                        <div class="row g-0">
+                            <!-- Parte Izquierda con Ícono y Color de Fondo -->
+                            <div class="col-md-4 four">
+                                <span class="material-symbols-outlined">
+                                    summarize
+                                </span>
+                            </div>
+
+                            <!-- Parte Derecha con Descripción -->
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 2em; text-align: center" th:text="${TotalPed}">33</h5>
+                                    <p class="card-text" style="text-align: center">Pedidos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="info">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card ctables">
+                                <div class="card-body">
+                                    <h5 class="card-title">Productos más costosos</h5>
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th scope="col">Posición</th>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Descripción</th>
+                                                <th scope="col">Categoria</th>
+                                                <th scope="col">Talla</th>
+                                                <th scope="col">Precio</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="producto,x : ${productos}">
+                                                <td th:text="${x.count}" scope="row"></td>
+                                                <td th:text="${producto.idProducto}"></td>
+                                                <td th:text="${producto.nombre}"></td>
+                                                <td th:text="${producto.Categoria.descripcion}"></td>
+                                                <td th:text="${producto.talla}"></td>
+                                                <td th:text="${producto.precio}"></td>  
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="card ctables">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pedido más reciente</h5>
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="table-dark">
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Fecha solicitada</th>
+                                                <th scope="col">Monto total</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="detalle : ${detalles}">
+                                                <td th:text="${detalle.Pedido.idPedido}"></td>
+                                                <td th:text="${detalle.Pedido.fecha}"></td>
+                                                <td th:text="${detalle.total}"></td> 
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>

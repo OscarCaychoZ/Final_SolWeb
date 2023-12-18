@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Productos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Custom styles for this template -->
+        <link href="../sidebars.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link href="../menu.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="../sidebars.js"></script>
+        <script src="../assets/js/color-modes.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            section{
+                width: 80%;
+                margin: auto;
+                margin-top: 50px;
+            }
+            h2{
+                text-align: center;
+                margin-top: 15px;
+                margin-bottom: 25px;
+            }
+            form{
+                padding: 1.5em;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div th:replace="tema_icono :: svg"></div>    
+
+        <div th:replace="tema :: div"></div>
+
+        <div th:replace="iconos :: svg"></div>
+
+        <main class="d-flex flex-nowrap" style="max-height:150vh !important;">
+            <h1 class="visually-hidden">Sidebars examples</h1>
+
+            <div th:replace="menu :: div"></div>
+            <div class="b-example-divider b-example-vr"></div>
+            <section>
+                <div class="container">
+                    <hr>
+                    <h2>Listado de Productos</h2>
+                    <hr>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ordenar por
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/producto/ascendente}">Precio más bajo</a></li>
+                            <li><a class="dropdown-item" th:href="@{/producto/descendente}">Precio más alto</a></li>
+                        </ul>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Talla</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Almacen</th>
+                                <th scope="col">Acción</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="producto: ${productos}">
+                                <td th:text="${producto.idProducto}"></td>
+                                <td th:text="${producto.nombre}"></td>
+                                <td th:text="${producto.Categoria.descripcion}"></td>
+                                <td th:text="${producto.talla}"></td>
+                                <td th:text="${producto.precio}"></td>
+                                <td th:text="${producto.stock}"></td>
+                                <td th:text="${producto.Inventario.nombre}"></td>  
+                                <td>
+                                    <a type="button" th:href="@{/producto/editar (cod=${producto.idProducto})}" target="self" class="btn btn-primary">Editar</a>
+                                    <a type="button" th:href="@{/producto/eliminar (cod=${producto.idProducto})}" target="self" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <a class="btn btn-success" th:href="@{/producto/nuevoPro}" type="button">Agregar más productos</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

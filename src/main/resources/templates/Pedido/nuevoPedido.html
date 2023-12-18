@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <title>Pedido</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Custom styles for this template -->
+        <link href="../sidebars.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link href="../menu.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="../sidebars.js"></script>
+        <script src="../assets/js/color-modes.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            h2{
+                margin-left: 20px;
+                margin-top: 15px;
+                margin-bottom: 25px;
+            }
+            .fec{
+                margin-bottom: 8.7px;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:replace="tema_icono :: svg"></div>    
+
+        <div th:replace="tema :: div"></div>
+
+        <div th:replace="iconos :: svg"></div>
+
+        <main class="d-flex flex-nowrap" style="max-height:150vh !important;">
+            <h1 class="visually-hidden">Sidebars examples</h1>
+
+            <div th:replace="menu :: div"></div>
+            <div class="b-example-divider b-example-vr"></div>
+
+            <div class="container">
+                <hr>
+                <h2>Registrar pedido</h2>
+                <hr>
+
+                <form action="/pedido/agregarPedido" method="post" class="row g-3">
+                    <div class="col-3">
+                        <label class="form-label">Productos</label>
+                        <select name ="idProducto" class="form-control" required="required">
+                            <option selectec="selected" disabled="disabled">Seleccione</option>
+                            <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.nombre}"></option>
+                        </select>
+                    </div>
+
+                    <div class="col-4">
+                        <label  class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" name="cant" min='1' step='0.1' placeholder="Cantidad" required="required">
+                    </div> 
+
+                    <div class="col-12">
+
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+
+                    </div>
+
+                    <hr>
+
+                    <table class="table">
+
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>           
+                                <th scope="col">Total</th>
+                                <th scope="col">Quitar</th>                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="car,x : ${carrito}">
+                                <th th:text="${x.count}" scope="row"></th>
+                                <td th:text="${car.id}"></td>
+                                <td th:text="${car.producto}"></td>
+                                <td th:text="${car.precio}"></td>
+                                <td th:text="${car.cantidad}"></td>
+                                <td th:text="${car.total}"></td>
+                                <td>
+                                    <a th:href ="@{/pedido/eliminarcarrito(cod=${x.count})}" style="color:red;" target ="_self">
+                                        <i class="bi bi-trash3">Eliminar</i>
+                                    </a>
+                                </td>
+                        </tbody>
+                    </table>
+                </form>
+
+                <hr>
+
+                <form class="row g-3" action="/pedido/registrarPedido" method="post">
+
+                    <div class="col-md-6 mt-3">
+                        <label class="form-label">Proveedor</label>
+                        <select name="proveedor" class="form-control" required="required">
+                            <option value="" selected disabled>Seleccione</option>
+                            <!-- th:value se referencia al atributo de la clase en este caso cliente -->
+                            <option th:each="pro : ${proveedores}" th:value="${pro.idProveedor}" th:text="${pro.nombre}"></option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6 mt-3">
+                        <label class="form-label">Usuario</label>
+                        <select name="usuario" class="form-control" required="required">
+                            <option value="" selected disabled>Seleccione</option>
+                            <option th:each="mp : ${usuarios}" th:value="${mp.idUsuario}" th:text="${mp.nombre}"></option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mt-3">
+                        <label for="fec" class="fec">Fecha:</label>
+                        <input type="datetime-local" class="form-control" name="fec" required>
+                    </div>
+
+                    <div class="col-md-4 mt-3">
+                        <label class="form-label">Medio de pago</label>
+                        <select name="mp" class="form-control" required="required">
+                            <option value="" selected disabled>Seleccione</option>
+                            <option th:each="metodopago : ${metodopago}" th:value="${metodopago}" th:text="${metodopago}"></option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 mt-3">
+                        <label class="form-label">Tipo de Comprobante</label>
+                        <select name="tc" class="form-control" required="required">
+                            <option value="" selected disabled>Seleccione</option>
+                            <option th:each="tipocomprobante : ${tipocomprobante}" th:value="${tipocomprobante}" th:text="${tipocomprobante}"></option>
+                        </select>
+                    </div>       
+
+                    <br>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

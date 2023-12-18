@@ -1,0 +1,95 @@
+
+<html>
+    <head>
+        <title>Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Custom styles for this template -->
+        <link href="../sidebars.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+        <link href="../menu.css" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="../sidebars.js"></script>
+        <script src="../assets/js/color-modes.js"></script>
+        <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+        <style>
+            section{
+                width: 80%;
+                margin: auto;
+                margin-top: 50px;
+            }
+            h2{
+                margin-top: 15px;
+                margin-left: 20px;
+                margin-bottom: 25px;
+            }
+            .select{
+                margin-top: 7.2px;
+            }
+            form{
+                padding: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:replace="tema_icono :: svg"></div>    
+
+        <div th:replace="tema :: div"></div>
+
+        <div th:replace="iconos :: svg"></div>
+
+        <main class="d-flex flex-nowrap" style="max-height:150vh !important;">
+            <h1 class="visually-hidden">Sidebars examples</h1>
+
+            <div th:replace="menu :: div"></div>
+            <div class="b-example-divider b-example-vr"></div>
+            <section>
+                <h2>Registrar Usuario</h2>
+                <hr>
+                <div id="content">
+                    <div id="form">
+                        <form class="row g-3" action="/usuario/registrar" method="post">
+                            <div class="col-md-5">
+                                <label class="form-label">Nombre:</label>
+                                <input type="text" class="form-control" name="nom" required>
+                            </div>
+                            <div class="col-md-7">
+                                <label class="form-label">Apellido:</label>
+                                <input type="text" class="form-control" name="ape" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Correo:</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-6">
+                                <label  class="form-label">Usuario:</label>
+                                <input type="text" class="form-control" name="user" placeholder="Ingrese nombre de usuario" required>
+                            </div>
+                            <div class="col-4">
+                                <label for="inputPassword4" class="form-label">Contraseña:</label>
+                                <input type="password" class="form-control" name="pass" required>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <label>Rol:</label>
+                                <select name="rol" class="form-control select" required="required">
+                                    <option value="" selected disabled>Seleccione</option>
+                                    <option th:each="rol : ${rolp}" th:value="${rol.idRol}" th:text="${rol.descripcion}"></option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary" id="submit">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
